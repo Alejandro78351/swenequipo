@@ -1,0 +1,48 @@
+<script type="text/template" id="measureUnitList">
+    <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <table class="table striped">
+    <thead>
+    <tr>
+		 <th>Nombre</th>
+		 <th>Descripción</th>
+    <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% _.each(measureUnits, function(measureUnit) { %>
+    <tr>
+		<td><%= htmlEncode(measureUnit.getDisplay('name')) %></td>
+		<td><%= htmlEncode(measureUnit.getDisplay('description')) %></td>
+    <td>
+    <% if(showEdit) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-measureUnit-edit',{id:<%= measureUnit.id %>}); return false" >Editar</a> |
+	<% } %> 
+	<% if(showDelete) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-measureUnit-delete',{id:<%= measureUnit.id %>}); return false" >Eliminar</a> 
+	<% } %>    
+	</td>
+    </tr>
+    <% }); %>
+    </tbody>
+    </table>
+    </div>
+</script>
+
+<script type="text/template" id="measureUnit">
+    <div class="form-group">
+    <form role="form" id="<%= componentId %>-measureUnitForm">
+    <% if(measureUnit.id) {%>
+    <input type="hidden" name="id" value="<%= measureUnit.id %>"/>
+    <% }%>
+		<div class="form-group" >
+		<label for="name">Nombre</label>
+    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= measureUnit.get('name') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="description">Descripción</label>
+    	<input type="text" class="form-control" id="description" name="description" placeholder="Enter value" value="<%= measureUnit.get('description') %>"/>	
+		</div>
+    </form>
+    </div>
+</script> 
