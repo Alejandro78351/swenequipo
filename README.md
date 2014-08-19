@@ -1,4 +1,2 @@
 swenequipo
 ==========
-Hola mundo
-swwswswswswsws
